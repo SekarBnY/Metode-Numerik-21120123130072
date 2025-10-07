@@ -4,40 +4,53 @@ def f(x, y):
     return x**2 + x*y - 10, y + 3*x*(y**2) - 57
 
 def g1(x, y):
-    arg = 10 - x*y
+    arg = 10 - x * y
     return math.sqrt(arg) if arg >= 0 else float('nan')
 
 def g2(x, y):
-    arg = 57 - 3*x*(y**2)
+    arg = 57 - 3 * x * (y ** 2)
     return math.sqrt(arg) if arg >= 0 else float('nan')
 
 def seidel(g1, g2, x0, y0, eps=1e-6, maxiter=20, savefile=True):
     x, y = x0, y0
     output = []
-    print("\n Iterasi Titik Tetap: Metode Seidel")
+    print("\nIterasi Titik Tetap: Metode Seidel\n")
+    output.append("Iterasi Titik Tetap: Metode Seidel\n")
+
     for k in range(1, maxiter + 1):
         x_new = g1(x, y)
         y_new = g2(x_new, y)
-        line = f"Iter {k:2d}: x = {x_new}, y = {y_new}"
+
+        dx = abs(x_new - x)
+        dy = abs(y_new - y)
+
+        line = f"Iterasi {k:2d}: x = {x_new:.6f}, y = {y_new:.6f}, dx = {dx:.6e}, dy = {dy:.6e}"
         print(line)
         output.append(line)
 
         if math.isnan(x_new) or math.isnan(y_new):
-            warn = " NaN muncul,  iterasi tetap dilanjutkan."
+            warn = "NaN terdeteksi. Iterasi dihentikan (akar negatif)."
             print(warn)
             output.append(warn)
-            x_new, y_new = x, y
+            break
 
-        if abs(x_new - x) < eps and abs(y_new - y) < eps:
-            result = f"\n Konvergen setelah {k} iterasi.\nHasil akhir: x = {x_new:.6f}, y = {y_new:.6f}"
+        if abs(x_new) > 1e6 or abs(y_new) > 1e6:
+            warn = "Nilai divergen (melebihi batas). Iterasi dihentikan."
+            print(warn)
+            output.append(warn)
+            break
+
+        if dx < eps and dy < eps:
+            result = f"\nKonvergen setelah {k} iterasi.\nHasil akhir: x = {x_new:.6f}, y = {y_new:.6f}"
             print(result)
             output.append(result)
             break
 
+
         x, y = x_new, y_new
 
     else:
-        result = "\n Tidak konvergen (semua iterasi ditampilkan)."
+        result = "\nTidak konvergen setelah iterasi maksimum."
         print(result)
         output.append(result)
 
