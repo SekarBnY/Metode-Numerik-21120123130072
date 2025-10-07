@@ -30,7 +30,7 @@ def jacobi(g1, g2, x0, y0, eps=1e-6, maxiter=20):
 
         if abs(x_new - x) < eps and abs(y_new - y) < eps:
             print(f"\n Konvergen setelah {k} iterasi.")
-            print(f"Hasil akhir: x ≈ {x_new:.6f}, y ≈ {y_new:.6f}")
+            print(f"Hasil akhir: x = {x_new:.6f}, y = {y_new:.6f}")
             return (x_new, y_new), k, "Konvergen"
 
         x, y = x_new, y_new
@@ -43,7 +43,7 @@ def jacobi(g1, g2, x0, y0, eps=1e-6, maxiter=20):
 
 def seidel(g1, g2, x0, y0, eps=1e-6, maxiter=20):
     x, y = x0, y0
-    print("\n=== Iterasi Titik Tetap: Metode Gauss-Seidel ===")
+    print("\n Iterasi Titik Tetap: Metode Seidel")
     for k in range(1, maxiter + 1):
         x_new = g1(x, y)
         y_new = g2(x_new, y)
@@ -55,7 +55,7 @@ def seidel(g1, g2, x0, y0, eps=1e-6, maxiter=20):
 
         if abs(x_new - x) < eps and abs(y_new - y) < eps:
             print(f"\n Konvergen setelah {k} iterasi.")
-            print(f"Hasil akhir: x ≈ {x_new:.6f}, y ≈ {y_new:.6f}")
+            print(f"Hasil akhir: x = {x_new:.6f}, y = {y_new:.6f}")
             return (x_new, y_new), k, "Konvergen"
 
         x, y = x_new, y_new
@@ -67,7 +67,7 @@ def seidel(g1, g2, x0, y0, eps=1e-6, maxiter=20):
 
 def newton_raphson(x0, y0, eps=1e-6, maxiter=20):
     x, y = x0, y0
-    print("\n=== Metode Newton-Raphson ===")
+    print("\n Metode Newton-Raphson ")
 
     for k in range(1, maxiter + 1):
         u, v = f(x, y)
@@ -87,7 +87,7 @@ def newton_raphson(x0, y0, eps=1e-6, maxiter=20):
 
         if abs(x_new - x) < eps and abs(y_new - y) < eps:
             print(f"\n Konvergen setelah {k} iterasi.")
-            print(f"Hasil akhir: x ≈ {x_new:.6f}, y ≈ {y_new:.6f}")
+            print(f"Hasil akhir: x = {x_new:.6f}, y = {y_new:.6f}")
             return (x_new, y_new), k, "Konvergen"
 
         x, y = x_new, y_new
@@ -100,7 +100,7 @@ def newton_raphson(x0, y0, eps=1e-6, maxiter=20):
 def secant_2d(p0, p1, eps=1e-6, maxiter=20):
     x0, y0 = p0
     x1, y1 = p1
-    print("\n=== Metode Secant-like 2D ===")
+    print("\n Metode Secant")
 
     for k in range(2, maxiter + 2):
         h = 1e-6
@@ -122,7 +122,7 @@ def secant_2d(p0, p1, eps=1e-6, maxiter=20):
 
         if abs(x2 - x1) < eps and abs(y2 - y1) < eps:
             print(f"\n Konvergen setelah {k} iterasi.")
-            print(f"Hasil akhir: x ≈ {x2:.6f}, y ≈ {y2:.6f}")
+            print(f"Hasil akhir: x = {x2:.6f}, y = {y2:.6f}")
             return (x2, y2), k, "Konvergen"
 
         x0, y0, x1, y1 = x1, y1, x2, y2

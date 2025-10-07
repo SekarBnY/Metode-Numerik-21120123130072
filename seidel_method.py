@@ -23,13 +23,13 @@ def seidel(g1, g2, x0, y0, eps=1e-6, maxiter=20, savefile=True):
         output.append(line)
 
         if math.isnan(x_new) or math.isnan(y_new):
-            warn = " NaN muncul — iterasi tetap dilanjutkan."
+            warn = " NaN muncul,  iterasi tetap dilanjutkan."
             print(warn)
             output.append(warn)
             x_new, y_new = x, y
 
         if abs(x_new - x) < eps and abs(y_new - y) < eps:
-            result = f"\n Konvergen setelah {k} iterasi.\nHasil akhir: x ≈ {x_new:.6f}, y ≈ {y_new:.6f}"
+            result = f"\n Konvergen setelah {k} iterasi.\nHasil akhir: x = {x_new:.6f}, y = {y_new:.6f}"
             print(result)
             output.append(result)
             break

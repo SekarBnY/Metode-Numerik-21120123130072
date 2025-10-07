@@ -33,7 +33,7 @@ def secant_2d(p0, p1, eps=1e-6, maxiter=20, savefile=True):
         output.append(line)
 
         if abs(x2 - x1) < eps and abs(y2 - y1) < eps:
-            result = f"\n Konvergen setelah {k} iterasi.\nHasil akhir: x ≈ {x2:.6f}, y ≈ {y2:.6f}"
+            result = f"\n Konvergen setelah {k} iterasi.\nHasil akhir: x = {x2:.6f}, y = {y2:.6f}"
             print(result)
             output.append(result)
             break
